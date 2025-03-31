@@ -1,0 +1,54 @@
+const gridContainer = document.querySelector("#grid-container");
+let sideNumber = 16;
+
+for (i = 0; i < sideNumber; i++) {
+    const row = document.createElement("div");
+    row.classList.add("grid-row");
+    gridContainer.appendChild(row);
+
+    for (j = 0; j < sideNumber; j++) {
+        const square = document.createElement("div");
+        square.classList.add("grid");
+        row.appendChild(square); 
+    };
+}
+
+//set up "hover" effect so square.sytle.backgroundColor changes when mouse passes over square
+// "hovering" == when mouse enters a div and ends when mouse leaves
+
+document.querySelector("#grid-container").addEventListener("mouseover", function (event) {
+    if (event.target.classList.contains("grid")) {
+        event.target.style.backgroundColor = "midnightblue";
+    }
+});
+
+// To do list:
+1 create eventListener that generates a prompt when button clicked
+2 take the value entered into the prompt == numberEntered
+3 remove old grid
+4 create a grid with numberEntered sqares per side
+5 adjust the width/height of square to take up all space in grid-container
+
+1
+const button document.querySelector("button");
+
+button.addEventListener("click", () => {
+    const playerInput = prompt("Enter a number");
+    if (playerInput < 1 || playerInput > 100) {
+                            //new prompt("Please enter a valid number (1-100)") 
+    }
+    else {
+    sideNumber = playerInput;
+    }
+
+2
+
+
+
+
+
+/*document.querySelector("#grid-container").addEventListener("mouseout", function (event) {
+    if (event.target.classList.contains("grid")) {
+        event.target.style.backgroundColor = ""; // Reset to default
+    }
+});*/
