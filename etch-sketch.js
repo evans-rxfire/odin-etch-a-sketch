@@ -1,36 +1,59 @@
 const gridContainer = document.querySelector("#grid-container");
+const button = document.querySelector("button");
 
-for (i = 0; i < 16; i++) {
-    const row = document.createElement("div");
-    row.classList.add("grid-row");
-    gridContainer.appendChild(row);
+function generateGrid(playerInput) {
+    gridContainer.innerHTML = "";
 
-    for (j = 0; j < 16; j++) {
-        const square = document.createElement("div");
-        square.classList.add("grid");
-        row.appendChild(square); 
-    };
+    for (i = 0; i < playerInput; i++) {
+        const row = document.createElement("div");
+        row.classList.add("grid-row");
+        gridContainer.appendChild(row);
+
+        for (j = 0; j < playerInput; j++) {
+            const square = document.createElement("div");
+            square.classList.add("grid");
+        
+            square.style.width = `${800 / playerInput}px`;
+            square.style.height = `${800 / playerInput}px`;
+
+            row.appendChild(square);
+        }
+    }
 }
 
-//set up "hover" effect so square.sytle.backgroundColor changes when mouse passes over square
-// "hovering" == when mouse enters a div and ends when mouse leaves
+generateGrid(16);
+
+
+button.addEventListener("click", () => {
+    let playerInput = 16;
+
+    while (true) {
+        let userInput = prompt("Enter a number between 1 and 100", playerInput);
+
+        if (userInput === null) {
+            break;
+        }
+        
+        let num = Number(userInput);
+
+        if(!isNaN(num) && num >= 1 && num <= 100) {
+            playerInput = num;
+            break;
+        } 
+        else {
+            alert("Invalid input! Please enter a number between 1 and 100.");
+        }
+    }
+    generateGrid(playerInput);
+});
+
+
 
 document.querySelector("#grid-container").addEventListener("mouseover", function (event) {
     if (event.target.classList.contains("grid")) {
         event.target.style.backgroundColor = "midnightblue";
     }
 });
-
-// To do list:
-// create eventListener that generates a prompt when button clicked
-// take the value entered into the prompt == numberEntered
-// remove old grid
-// create a grid with numberEntered sqares per side
-// adjust the width/height of square to take up all space in grid-container
-
-
-
-
 
 /*document.querySelector("#grid-container").addEventListener("mouseout", function (event) {
     if (event.target.classList.contains("grid")) {
